@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <!-- Main CSS-->
-    <link rel="stylesheet" href="{% static 'prabhav/css/reg.css' %}">
+    <link rel="stylesheet" href="{% static 'design/css/reg.css' %}">
 
 </head>
 
@@ -27,8 +27,8 @@
         background-size: cover; filter: brightness(90%)"></div>
 
                 <div class="card-body">
-                    <h2 class="title">Registration Info</h2>
-                    <form>
+                    <h2 class="title">Registration Infos</h2>
+                    <form method="POST" action="{% url 'signup' %}">
 
                         {% csrf_token %} {% for field in form %}
                         <p>

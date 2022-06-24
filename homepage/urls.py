@@ -21,10 +21,11 @@ urlpatterns = [
     #  path('',views.home, name='home' ),
     # path('',views.bookButton, name='book' ),
 
-    path('',views.book_list_view, name='homepage'),
+    # path('',views.book_list_view, name='homepage'),
 
     # re_path('(?P<slug>[\w-]+)/$',BookDetailSlugView.as_view()),  create conflict with other below url through booksdetailslugview.. TexasInnovator,Bookify,mitrapark
-
+    path('',views.book_list_view, name='homepage'),
+    # re_path('home/(?P<slug>[\w-]+)/$',BookDetailSlugView.as_view(),name="detailis"),
 
 
 

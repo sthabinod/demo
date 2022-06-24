@@ -1,286 +1,332 @@
-
-{% load static %}
-{% static "images" as imageUrl %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'style/homepage_style.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-
-<body>
+{% extends 'base.html' %} {% load static %} {% block title %} Bookify: online book sharing platform {% endblock %} {% block internalCss %} body{ background-color:#f5f5f5; } {% endblock %} {% block link %}
 
 
-    <div id="main">
-        <div class="wrapper">
+<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
 
-            <div class="row  d-lg-flex align-items-center start">
-                <span style=" font-size:30px;cursor:pointer;position:absolute;" class="mx-4"
-                    onclick="openNav()">&#9776;</span>
+<!-- <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" /> -->
 
+<!-- Slick -->
+<link type="text/css" rel="stylesheet" href="{% static 'css/slick.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'css/slick-theme.css' %}" />
+<!-- nouislider -->
+<link type="text/css" rel="stylesheet" href="{% static 'css/nouislider.min.css' %}" />
 
-                <div class="col-2 col-md-1">
-                    <!-- <i class="fas fa-bars"></i> -->
-                    <div id="mySidenav" class="sidenav">
-                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <a href="#">About</a>
-                        <a href="#">Services</a>
-                        <a href="#">Clients</a>
-                        <a href="#">Contact</a>
-                    </div>
-                </div>
+<!-- Custom stlylesheet -->
+<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
+{% endblock %} {% block content %}
 
-                <h1 class=" col-3 col-md-2 logo text-center">Logo</h1>
-
-                <div class=" col-5 col-md-7">
-                    <div class="search">
-                        <input type="text" class="searchTerm" placeholder="What are you looking for?">
-                        <button type="submit" class="searchButton">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-
-
-                <div class="col-2 col-md-2">
-                    <a href="#" class="login"><i class="fas fa-user"> Login or Register</i></a>
-                </div>
+<!-- NAVIGATION -->
+<div id="navigation">
+    <!-- container -->
+    <div class="container">
+        <div id="responsive-nav">
+            <!-- category nav -->
+            <div class="category-nav">
+                <span class="category-header">Categories <i class="fa fa-list"></i></span>
+                <ul class="category-list">
+                    <li><a href="{% url 'bachelor' %}">Bachelor</a></li>
+                    <li><a href="{% url 'master' %}">Master</a></li>
+                    <li><a href="{% url 'plustwo' %}">+2</a></li>
+                    <li><a href="{% url 'see' %}">SEE</a></li>
+                    <li><a href="{% url 'school' %}">School</a></li>
+                    <li><a href="{% url 'diploma' %}">Diploma</a></li>
+                    <li><a href="{% url 'extra' %}">Extra</a></li>
+                </ul>
             </div>
+            <!-- /category nav -->
+            <!-- menu nav -->
+            <div class="menu-nav">
+                <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                <ul class="menu-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="{% url 'profile' %}">&nbsp&nbsp&nbsp&nbsp&nbspMy Account</a></li>
+                    <!-- <li><a href="#">Latest Collection</a></li> -->
+                    <li><a href="{% url 'book' %}">&nbsp&nbsp&nbsp&nbsp&nbspSell/Donate</a></li>
+                    <li><a href="{% url 'about' %}">&nbsp&nbsp&nbsp&nbsp&nbspAbout us</a></li>
+
+                </ul>
+            </div>
+            <!-- menu nav -->
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+<!-- /NAVIGATION -->
 
 
+<!-- HOME -->
+<div id="home">
+    <!-- container -->
+    <div class="container">
+        <!-- home wrap -->
+        <div class="home-wrap">
+            <!-- home slick -->
+            <div id="home-slick">
 
-            <header class="heading">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{% static 'images/books1.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/books2.jpg' %}" class="d-block w-100" alt="...">
+                {% for slide in homeslide %}
+                <!-- banner -->
 
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/books3.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
+                <div class="banner banner-1">
+                    <img src="{{slide.image.url}}" height="358px" alt="">
+                    <div class="banner-caption text-center">
+                        <h1>{{slide.text1|default_if_none:''}}</h1>
+                        <h3 class="white-color font-weak">{{slide.text2|default_if_none:''}}</h3>
+
+                        {% if slide.show %}
+                        <button class="primary-btn">Shop Now</button> {% endif %}
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
-            </header>
+                <!-- /banner -->
+                {% endfor %}
+            </div>
+            <!-- /home slick -->
+        </div>
+        <!-- /home wrap -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /HOME -->
 
+<!-- end of scroll div -->
 
-            <div class="container">
-                    <h2>Best Selling</h2>
-                    <div class="row">
-    
-                        <div class="wrapper">
-    
-                        </div>
-
-
-                   {% for fetchdata in data  %}
-                        <div class="col col-lg-3 columns">
-                            <div class="product-top">
-                                    <img src="{% static 'images/books1.jpg' %}" alt="...">
-                                    <div class="overlay">
-                                    <button class="btn btn-secondary" title="Quick Shop"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-secondary" title="Add to Wishlist"><i
-                                            class="fas fa-heart"></i></button>
-                                    <button class="btn btn-secondary" title="Add to Cart"><i
-                                            class="fas fa-shopping-cart"></i></button>
-                                </div>
-    
-                                <div class="product-bottom text-center">
-    
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <i class="far fa-star"></i>
-    
-                                    <h3>{{fetchdata.bname}}</h3>
-                                    <h5>{{fetchdata.display_selling_price}}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-
-
-
-
-
-
-            <div class="container">
-                <h2>Latest Collections</h2>
-                <div class="row">
-                    <div class="col columns">
-                        <div class="product-top">
-                            <img src="img/books1.jpg" alt="...">
-                            <div class="overlay">
-                                <button class="btn btn-secondary" title="Quick Shop"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-secondary" title="Add to Wishlist"><i
-                                        class="fas fa-heart"></i></button>
-                                <button class="btn btn-secondary" title="Add to Cart"><i
-                                        class="fas fa-shopping-cart"></i></button>
-                            </div>
-
-                            <div class="product-bottom text-center">
-
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <i class="far fa-star"></i>
-
-                                <h3>Title</h3>
-                                <h5>Rs.400</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col columns">
-                        <div class="product-top">
-                            <img src="img/books1.jpg" alt="...">
-                            <div class="overlay">
-                                <button class="btn btn-secondary" title="Quick Shop"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-secondary" title="Add to Wishlist"><i
-                                        class="fas fa-heart"></i></button>
-                                <button class="btn btn-secondary" title="Add to Cart"><i
-                                        class="fas fa-shopping-cart"></i></button>
-                            </div>
-
-                            <div class="product-bottom text-center">
-
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <i class="far fa-star"></i>
-
-                                <h3>Title</h3>
-                                <h5>Rs.400</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col columns">
-                        <div class="product-top">
-                            <img src="img/books1.jpg" alt="...">
-                            <div class="overlay">
-                                <button class="btn btn-secondary" title="Quick Shop"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-secondary" title="Add to Wishlist"><i
-                                        class="fas fa-heart"></i></button>
-                                <button class="btn btn-secondary" title="Add to Cart"><i
-                                        class="fas fa-shopping-cart"></i></button>
-                            </div>
-
-                            <div class="product-bottom text-center">
-
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <i class="far fa-star"></i>
-
-                                <h3>Title</h3>
-                                <h5>Rs.400</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col columns ">
-                        <div class="product-top">
-                            <img src="img/books1.jpg" alt="...">
-                            <div class="overlay">
-                                <button class="btn btn-secondary" title="Quick Shop"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-secondary" title="Add to Wishlist"><i
-                                        class="fas fa-heart"></i></button>
-                                <button class="btn btn-secondary" title="Add to Cart"><i
-                                        class="fas fa-shopping-cart"></i></button>
-                            </div>
-
-                            <div class="product-bottom text-center">
-
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <i class="far fa-star"></i> <i class=""></i>
-
-                                <h3>Title</h3>
-                                <h5>Rs.400</h5>
-                            </div>
-                        </div>
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- section-title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 class="title">Feature Products</h2>
+                    <div class="pull-right">
+                        <div class="product-slick-dots-1 custom-dots"></div>
                     </div>
                 </div>
             </div>
+            <!-- /section-title -->
 
-
-
-            <footer class="ending">
-                <div class=" bg-primary d-flex justify-content-around last-s">
-                    <div class="something">
-                        <h4>About Us</h4>
-                        <h4>FAQ</h4>
-                        <h4>Contact Us</h4>
-                        <h4>Privacy Policy</h4>
+            <!-- banner -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="banner banner-2">
+                    <img src="{% static 'img/long_book_read.jpg' %}" alt="">
+                    <div class="banner-caption">
+                        <h2 class="white-color">NEW<br>COLLECTION</h2>
+                        <a href="{% url 'new_collections' %}" class="primary-btn">Shop Now</a>
+                        <!-- <button class="primary-btn" action="{% url 'new_collections' %}">Shop Now</button> -->
                     </div>
-                    <div class="contact">
-                        <h4>Contact Details</h4>
-                        <h4>Contact Details</h4>
-                        <h4>Contact Details</h4>
-                        <h4>Contact Details</h4>
-                    </div>
-                    <div class="payments">
-                        <h4>Payments</h4>
-                        <h4>Payments</h4>
-                        <h4>Payments</h4>
-                        <h4>Payments</h4>
-                    </div>
-
                 </div>
+            </div>
+            <!-- /banner -->
+
+            <!-- Product Slick -->
+
+            {% for obj in featured %} {% include 'snippets/card.html' with instance=obj %} {% endfor %}
+            <!-- /Product Single -->
+
+
+        </div>
+    </div>
+</div>
+<!-- /Product Slick -->
+</div>
+<!-- /row -->
+
+
+<!-- second row of deal item here  -->
+
+
+</div>
+<!-- /container -->
+</div>
+<!-- /section -->
 
 
 
-                <div class="bg-dark last">
-                    <h3>Copyright &copy; bookify 2019</h3>
+<!-- end of deal of day -->
+
+<!-- section -->
+<div class="section section-grey">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- banner -->
+            <div class="col-md-8">
+                <div class="banner banner-1">
+                    <img src="{% static 'img/b_library.jpg' %}" alt="" style="filter:brightness(45%);">
+                    <div class="banner-caption text-center">
+                        <h1 class="primary-color">Donation<br><span class="white-color font-weak" style="font-size: 17px;">The measure of life is not its duration, but its donation.
+
+</span>
+                        </h1>
+                        <a class="banner banner-1" href="{% url 'donations' %}">
+                            <button class="primary-btn">View Book</button>
+                        </a>
+                    </div>
                 </div>
+            </div>
+            <!-- /banner -->
 
-            </footer>
+            <!-- banner -->
+            <div class="col-md-4 col-sm-6">
+                <a class="banner banner-1" href="{% url 'new_collections' %}">
+                    <img src="{% static 'img/b_stack2.jpg' %}" style="filter:blur(0.8px);" alt="">
+                    <div class="banner-caption text-center">
+                        <h2 class="white-color">NEW COLLECTION</h2>
+                    </div>
+                </a>
+            </div>
+            <!-- /banner -->
 
+            <!-- banner -->
+            <div class="col-md-4 col-sm-6">
+                <a class="banner banner-1" href="{% url 'donate' %}">
+                    <img src="{% static 'img/b_stack.jpg' %}" style="filter:blur(0.9px);" alt="">
+                    <div class="banner-caption text-center">
+                        <h2 class="white-color">Donate Now</h2>
+                    </div>
+                </a>
+            </div>
+            <!-- /banner -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+
+<!-- section -->
+
+
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- Recommend  Books -->
+
+        {% if recommended %}
+        <div class="row">
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 class="title">Recommended For You</h2>
+                </div>
+            </div>
+            <!-- section title -->
+
+            <!-- Featured Single -->
+            {% for obj in recommended %} {% include 'snippets/card.html' with instance=obj %} {% endfor %}
+            <!-- /Featured Single -->
+            <!-- /row -->
+        </div>
+
+        {% endif %}
+        <!-- row -->
+        <div class="row">
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 class="title">Latest Products</h2>
+                </div>
+            </div>
+            <!-- section title -->
+
+
+
+            <!-- 
+	               {% for bookData in book %}
+					<div class="col-md-3 col-sm-6 col-xs-6">
+						<a href="#">
+						<div class="product product-single">
+							<div class="product-thumb">
+								<div class="product-label">
+									{% if not bookData.available %}
+									<span>Sold</span>
+									{% endif %}
+									<span class="sale">-20%</span>
+								</div>
+								<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+								<img src="{{bookData.image.url}}" height="300px" alt="img">
+							</div>
+							<div class="product-body">
+									<h2 class="product-name"><a href="#">{{bookData.bname}}</a></h2>
+                                	<h3 class="product-price">Rs.{{bookData.display_selling_price}} 
+										<del class="product-old-price">Rs. 45.00</del>
+									</h3>
+							</div>
+						</div>
+					</a>
+					</div>
+					{% endfor %} -->
+
+
+
+            {% for obj in latest %} {% include 'snippets/card.html' with instance=obj %} {% endfor %}
+
+        </div>
+        <!-- /row -->
+
+
+        <!-- /row -->
+
+
+
+
+        <!-- Extra Books -->
+        <div class="row">
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 class="title">Extras</h2>
+                </div>
+            </div>
+            <!-- section title -->
+
+            <!-- Featured Single -->
+            {% for obj in extra %} {% include 'snippets/card.html' with instance=obj %} {% endfor %}
+            <!-- /Featured Single -->
+            <!-- /row -->
         </div>
 
 
     </div>
 
 
-    <script src="https://kit.fontawesome.com/4050212672.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="{% static 'js/homepage_script.js' %}"></script>
-</body>
+    <!-- /container -->
+</div>
+<!-- /section -->
 
-</html>
+
+
+{% if msg %}
+<script>
+    Swal.fire(
+        'Added To Cart',
+        'Press ok to close it',
+        'success', ).then(
+        function() {
+            window.location.href = "{% url 'homepage' %}"
+        }
+    )
+</script>
+
+{% endif %} {% if already %}
+<script>
+    Swal.fire(
+        'This Product Already in your Cart',
+        'Press ok to close it',
+        'success', ).then(
+        function() {
+            window.location.href = "{% url 'homepage' %}"
+        }
+    )
+</script>
+
+{% endif %} {% endblock %}

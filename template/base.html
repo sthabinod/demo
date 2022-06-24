@@ -89,7 +89,7 @@
                   >Profile</a
                 >
                 /
-                <a href="" class="text-lowercase">logout</a>
+                <a href="{% url 'logout' %}" class="text-lowercase">logout</a>
                 {% else %}
                 <a href="{% url 'login' %} " class="text-lowercase">Login</a> /
                 <a href="{% url 'signup' %} " class="text-lowercase">join</a>

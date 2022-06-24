@@ -12,10 +12,6 @@ from registration.forms import SignUpForm
 from registration.tokens import account_activation_token
 from django.conf import settings
 
-
-
-
-
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -23,18 +19,9 @@ def signup(request):
             user = form.save(commit=False)
             user.is_active = False
             user.save()
-
-            current_site = get_current_site(request)
-            subject = 'Activate Your MySite Account'
-            message = render_to_string('prabhav/registration/account_activation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'token': account_activation_token.make_token(user),
-            })
-            from_email=settings.EMAIL_HOST_USER
-            to_email=[user.email]
-            send_mail(subject=subject,from_email=from_email,recipient_list=to_email,message=message,fail_silently=False)
-
+            return redirect('login')
+        else:
+            print("This is testing . .. . . ... .")
             return redirect('account_activation_sent')
     else:
         form = SignUpForm()

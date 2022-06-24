@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <link rel="stylesheet" href="{% static 'prabhav/css/reg.css' %}">
+    <link rel="stylesheet" href="{% static 'design/css/reg.css' %}">
 
 </head>
 
@@ -20,7 +20,7 @@
         background-size: cover;"></div>
                 <div class="card-body">
                     <h2 class="title">Login</h2>
-                    <form>
+                    <form method="POST">
 
                         {% csrf_token %} {% for field in form %}
                         <p>
@@ -37,7 +37,7 @@
                         </p>
                         {% endfor %}
                         <div class="p-t-20">
-                            <button class="btn btn--radius btn--green " type="submit">Login</button><br><br>
+                            <button class="btn btn--radius btn--green" type="submit">Login</button><br><br>
                             <a href="" style=" text-decoration: none; color: #e50914; font-size: 1rem; ">Register
                 Now !!!</a>
                             <a href="" style="text-decoration: none; color: #e50914; margin-left: 15em; font-size: 1rem;">Forget
