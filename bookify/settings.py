@@ -36,7 +36,13 @@ EMAIL_USE_TLS = True
 # Application definition
 
 INSTALLED_APPS = [
+    'others',
+    'checkout',
+    'cart',
+    'search',
     'registration',
+    'UserProfile.apps.UserprofileConfig',
+    'addBook.apps.AddbookConfig',
     'homepage.apps.HomepageConfig',
     'django.contrib.admin',
     'django.contrib.auth',

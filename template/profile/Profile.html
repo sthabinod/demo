@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{%load static %}
+
+
+{% block title %} My Profile {% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+{% include 'profile/profile_base.html' %}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-3 center">
+        <span class="profile-picture">
+            <img class="editable img-responsive" alt=" Avatar" id="avatar2" src="{% static 'img/profile.png' %}">
+
+        </span>
+        <!--Profile Picture Ended-->
+
+        <div class="space space-4"></div>
+        <h2>{{userProfile.first_name}} {{userProfile.last_name}}</h2>
+
+
+    </div><!-- /.col -->
+
+    <div class="col-xs-12 col-sm-9">
+        <h4 class="blue">
+            <span class="middle"></span>
+
+        </h4>
+
+        <div class="profile-user-info">
+            <!--Username-->
+            <br>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> Username </div>
+
+                <div class="profile-info-value" id="username">
+                    <span>{{userProfile.username}}</span>
+                </div>
+            </div>
+            <!--Username end-->
+
+            <!--Email-->
+            <br>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> Email </div>
+
+                <div class="profile-info-value" id="username">
+                    <span>{{userProfile.email}}</span>
+                </div>
+            </div>
+            <!--Email end-->
+
+            <!--Contact Info-->
+            <!-- <div class="profile-info-row">
+                <div class="profile-info-name"> Contact</div>
+
+                <div class="profile-info-value" id="username">
+                    <span>{{userProfile.contact}}</span>
+                </div>
+            </div> -->
+            <!--Contact info end-->
+
+            <!--User Location-->
+            <!-- <div class="profile-info-row">
+                <div class="profile-info-name"> Location </div>
+
+                <div class="profile-info-value">
+                    <i class="fa fa-map-marker light-orange bigger-110"></i>
+                    <span>{{userProfile.city}}</span>
+                    <span>{{userProfile.place}}</span>
+                </div>
+            </div> -->
+            <!--User Location end-->
+            <!--Age-->
+            <!-- <div class="profile-info-row">
+                <div class="profile-info-name"> Age </div>
+
+                <div class="profile-info-value">
+                    <span>{{userProfile.age}}</span>
+                </div>
+            </div> -->
+            <!--Age End-->
+            <!--Joined Date-->
+            <br>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> Joined </div>
+
+                <div class="profile-info-value">
+                    <span>{{userProfile.date_joined}}</span>
+
+                </div>
+            </div>
+
+            <!--Joined Date end-->
+            <br>
+            <!-- <div class="profile-info-row">
+                <div class="profile-info-name"> Change Password </div>
+
+                <div class="profile-info-value">
+                    <span><a href="{% url 'password_change' %}"><i class="fa fa-check"
+                                style="font-size: 30px; color:red"></i></a></td></span>
+
+                </div>
+            </div> -->
+
+
+        </div>
+
+    </div><!-- /.col -->
+</div><!-- /.row -->
+
+<div class="space-20"></div>
+
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{%load static %}
+
+
+{% block title %} Brought Book {% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+{% include 'profile/profile_base.html' %}
+
+
+<div class="container" style={bgcolor}>
+    <h2>Brought Books</h2>
+    <div class="row">
+        {%for broughtbook in broughtbooks%}
+        <div class="wrapper">
+        </div>
+        <a href="{% url 'detailis' broughtbook.slug %}">
+        <div class="col columns col-lg-2 ">
+            {% if broughtbook.status == "pending" %}
+            <span style="position: relative;
+                    display: inline-block;
+                    padding: 5px 15px;
+                    font-weight: 700;
+                    color: #FFF;
+                    background-color: #30323A;
+                    z-index: 22;">pending</span>
+            {% else %}
+            <span style="position: relative;
+                    display: inline-block;
+                    padding: 5px 15px;
+                    font-weight: 700;
+                    color: #FFF;
+                    z-index: 22;"></span>
+            {% endif %}
+
+            <div class="product-top">
+                <img src="{{broughtbook.image.url}}" width="100" height="100" alt="...">
+
+                <div class="product-bottom text-center">
+                    <h3>{{broughtbook.bname}}</h3>
+                    <h5>Rs.{{broughtbook.display_selling_price}}</h5>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+        </a>
+        {%endfor%}
+    </div>
+</div>
+
+{% endblock %}

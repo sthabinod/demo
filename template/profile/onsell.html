@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{%load static %}
+
+
+{% block title %} On Sell {% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+{% include 'profile/profile_base.html' %}
+
+<div class="container">
+    <h2>On Sell Books</h2>
+    <div class="row"> {% for book in books %}
+        <div class=" wrapper">
+
+        </div>
+
+        <a href="{% url 'detailis' book.slug %}">
+        <div class="col columns col-lg-2">
+            {% if book.status == 'pending' %}
+            <span style="position: relative;
+                display: inline-block;
+                padding: 5px 15px;
+                font-weight: 700;
+                color: #FFF;
+                background-color: #30323A;
+                z-index: 22;">Pending</span>
+            {% else %}
+            <span style="position: relative;
+                display: inline-block;
+                padding: 5px 15px;
+                font-weight: 700;
+                color: #FFF;
+                z-index: 22;"></span>
+            {% endif %}
+
+            <div class="product-top">
+                <img src="{{book.image.url}}" height="100" width="100" alt="...">
+
+
+                <div class="product-bottom text-center">
+
+                    <h3>{{book.bname}}</h3>
+                    <h5>Rs.{{book.selling_price}}</h5>
+
+                    {{book.uploaddate}}
+                </div>
+            </div>
+        </div></a>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

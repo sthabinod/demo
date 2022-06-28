@@ -15,19 +15,30 @@ Including another URLconf
 """
 from django.urls import path,re_path
 from . import views
+from .views import BookDetailSlugView
 
 
 urlpatterns = [
     #  path('',views.home, name='home' ),
     # path('',views.bookButton, name='book' ),
 
-    # path('',views.book_list_view, name='homepage'),
+    path('',views.book_list_view, name='homepage'),
+    re_path('home/(?P<slug>[\w-]+)/$',BookDetailSlugView.as_view(),name="detailis"),
 
     # re_path('(?P<slug>[\w-]+)/$',BookDetailSlugView.as_view()),  create conflict with other below url through booksdetailslugview.. TexasInnovator,Bookify,mitrapark
-    path('',views.book_list_view, name='homepage'),
-    # re_path('home/(?P<slug>[\w-]+)/$',BookDetailSlugView.as_view(),name="detailis"),
 
 
+
+
+    path('plustwo/',views.plustwo,name='plustwo'),
+    path('bachelor/',views.bachelor,name='bachelor'),
+    path('school/',views.school,name='school'),
+    path('see/',views.see,name='see'),
+    path('diploma/',views.diploma,name='diploma'),
+    path('master/',views.master,name='master'),
+    path('extra/',views.extra,name='extra'),
+    path('new_collections/',views.new_collections,name='new_collections'),
+    path('donations/',views.donations,name='donations'),
 
 
 

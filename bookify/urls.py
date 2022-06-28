@@ -20,12 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 # from homepage.views import BookDetailSlugView,book_list_view,plustwo,bachelor,school,see,diploma,extra,master
+from search.views import searchposts
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #  path('data/',include('homepage.urls')),
+    path('addbook/',include('addBook.urls')),
 
     path('profile/',include('UserProfile.urls')),
 
@@ -37,14 +39,18 @@ urlpatterns = [
 
 
 
+    path('search/',searchposts,name='searchposts'),
 
 
+    path('checkout/',include('checkout.urls')),
  
 
      path('registration/', include('registration.urls')),
 
      path('accounts/', include('django.contrib.auth.urls')),
 
+     path('cartwork/',include('cart.urls')),
+     path('about/', include('others.urls')),
 
 
     
